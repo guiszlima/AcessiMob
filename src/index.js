@@ -16,9 +16,9 @@ app.use(express.json());
 sequelize.sync()
     .then(() => {
         app.listen(PORT, () => {
-            console.log(`Server running on port ${PORT}`);
+            console.log(`Servidor utilizando a porta ${PORT}`);
         });
     })
     .catch(error => {
-        console.error('Unable to connect to the database:', error);
+        console.error('Não foi possivel conectar ao banco de dados:', error);
     });

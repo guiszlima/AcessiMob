@@ -2,8 +2,8 @@ import bcrypt from 'bcrypt';
 import ValidateEmail from '../../commons/ValidateEmail';
 import User from '../models/Users'; 
 
-class RegisterController {
-    async register(req, res) {
+
+    module.exports.register = async (req, res) => {
         const { name, email, password } = req.body;
 
         // Verifica se todos os campos obrigatórios foram fornecidos
@@ -35,12 +35,11 @@ class RegisterController {
             });
 
             // Retorna o novo usuário criado
-            return res.status(201).json(newUser);
+            return res.status(201).json({msg:'Registrado com Sucesso!'});
         } catch (error) {
             console.error('Erro ao registrar usuário:', error);
             return res.status(500).json({ error: 'Erro interno ao registrar usuário. Por favor, tente novamente mais tarde.' });
         }
     }
-}
 
-export default new RegisterController();
+
