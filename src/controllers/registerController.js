@@ -1,11 +1,11 @@
-import bcrypt from 'bcrypt';
-import ValidateEmail from '../../commons/ValidateEmail';
-import User from '../models/Users'; 
+const bcrypt = require('bcrypt');
 
+const ValidateEmail = require('../../commons/ValidateEmail');
+const User = require('../models/Users');
 
     module.exports.register = async (req, res) => {
         const { name, email, password } = req.body;
-
+        console.log(name,email,password)
         // Verifica se todos os campos obrigatórios foram fornecidos
         if (!name || !email || !password) {
             return res.status(422).json({ error: 'Todos os campos são obrigatórios: nome, email e senha.' });

@@ -1,3 +1,8 @@
+const bcrypt = require('bcrypt');
+const User = require('../models/Users');
+const jwt = require('jsonwebtoken')
+const ValidateEmail = require('../../commons/ValidateEmail')
+
 
 
 
@@ -11,6 +16,10 @@ class LoginController {
         if (!email) {
             return res.status(422).json({ msg: "O email é Obrigatório" });
           }
+          
+        if(!ValidateEmail(email) ){
+          return res.status(422).json({ msg: "O email é invalido" });
+        }
           if (!password) {
             return res.status(422).json({ msg: "A Senha é Obrigatória" });
           }
@@ -27,7 +36,7 @@ class LoginController {
            
             const mySecret = process.env["SECRET"];
            
-            const token = jwt.sign({ user: user.name }, mySecret, { expiresIn: 300 });
+            const token = jwt.sign({ user: User.name }, mySecret, { expiresIn: 300 });
             res.status(200).json({
               msg: "Autenticação realizada com sucesso",
               //Retorna o Token
@@ -53,4 +62,4 @@ class LoginController {
 
 }
 
-export default new LoginController();
+module.exports =  new LoginController();
