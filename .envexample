@@ -1,0 +1,3 @@
+DB_STORAGE=./data/database.sqlite
+PORT=3000
+SECRET=CHAVE PARA GERAR O TOKEN
